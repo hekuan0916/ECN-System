@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let n=0
+        ;(async function a(num){
+            console.log('init a',num)
+            b(num++)
+            console.log('a end',num);
+        })(n)
+
+        async function b(num){
+            console.log('init b',num++)
+            await c(num++)
+            console.log('b end',++num);
+        }
+
+        async function c(num){
+            setTimeout(() => {
+                console.log('init c',num++);
+            }, 0);
+            console.log('c end',num);
+        }
+        new Promise((resolve=>{
+            console.log('init promise',n)
+            resolve(n)
+        })).then((num)=>{
+            console.log('promise end',num++);
+        })
+
+        console.log(n++>n);
+        console.log('end',n);
+    </script>
+</body>
+</html>

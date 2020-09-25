@@ -8,7 +8,7 @@ import createEffect from '@/components/createEffect'
 import createProblem from '@/components/createProblem'
 import ehwProblem from '@/components/ehwProblem'
 import upload from '@/components/upload'
-import ecrModal from '@/components/ecrModal'
+// import ecrModal from '@/components/ecrModal'
 import ehwDetail from '@/components/ehwDetail'
 import ehwApproval from '@/components/ehwApproval'
 import ehcProblem from '@/components/ehcProblem'
@@ -85,13 +85,40 @@ const router = new Router({
       },
       component: upload
     },
+    // {
+    //   path: '/ecrModal',
+    //   name: '编辑',
+    //   meta: {
+    //     requiresAuth: true
+    //   },
+    //   component: ecrModal
+    // },
     {
-      path: '/ecrModal',
-      name: '编辑',
+      path: '/editQuestion',
+      name: 'eh异常确认',
+      component:()=>import('@/components/editQuestion'),
       meta: {
+        title:'EH异常确认',
         requiresAuth: true
-      },
-      component: ecrModal
+      }
+    },
+    {
+      path: '/editAnalysis',
+      name: 'EH分析及对策',
+      component:()=>import('@/components/editAnalysis'),
+      meta: {
+        title:'eh分析及对策',
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/editDraw',
+      name: 'EH出图确认',
+      component:()=>import('@/components/editDraw'),
+      meta: {
+        title:'出图确认',
+        requiresAuth: true
+      }
     },
     {
       path: '/ehwDetail',

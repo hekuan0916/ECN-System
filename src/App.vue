@@ -160,7 +160,7 @@ export default {
   html, body, #app{
     width: 100%;
     height: 100%;
-    color: rgba(0, 0, 0, .58);
+    color: rgba(0, 0, 0, 0.58);
     // -webkit-overflow-scrolling:touch;
   }
   #app {

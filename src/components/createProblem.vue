@@ -1,6 +1,6 @@
 <template>
   <div id="createPro">
-    <!-- <header>创建问题</header> -->
+    <!-- <header>创建异常</header> -->
     <a-form
       layout="horizontal"
       @submit="handleSubmit"

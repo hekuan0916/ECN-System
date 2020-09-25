@@ -111,6 +111,12 @@ export const SHOWEHCINFO = `${url}/ECN/EHCController/showEHCDetailInfo`
 export const GETLAST = `${url}/ECN/EHCController/getLastCreate`
 
 export const GETEHCDATA = `${url}/ECN/EHCController/showEHCModifyData`
+// 异常确认
+export const editQuestion = `${url}/FormBuildV2Controller/editQuestionConfirm`
+// 分析及对策
+export const EDITANALYSIS = `${url}/FormBuildV2Controller/editReasonAnalysis`
+// 出图确认
+export const EDITDRAW = `${url}/FormBuildV2Controller/editDrawConfirm`
 
 // 获取省份
 export const showProvince = `${url}/ECN/AppController/showProvinceByName`

@@ -11,8 +11,8 @@
             </div>
              <!-- 查看上传的视频 -->
             <div class="ant-card-body">
-                <li class="videoList" v-for="(item,index) in checkImgList" :key='index' v-if="item.video">
-                    <div style="text-align:center;margin:10px 0;" @click="showBigVideo(item.video,item.uuid)">
+                <li class="videoList" v-for="(item,index) in checkImgList" :key='index'>
+                    <div style="text-align:center;margin:10px 0;" v-if="item.video" @click="showBigVideo(item.video,item.uuid)">
                         <video class="video" width="300" :poster="'data:image/png;base64,' + item.video">
                             您的浏览器不支持 video 标签。 
                         </video>
