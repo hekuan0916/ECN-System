@@ -1,11 +1,11 @@
-
-export const URL = 'http://10.123.8.94:8282'  //测试参数地址
+export const URL = 'http://10.123.8.94:8282' //测试参数地址
 
 // export const URL = 'http://183.234.204.230:8090/ecnMoblie/' //打包参数地址
 
 export const DD_CONFIG = 'http://183.234.204.230:8085/WorkStat/dingtalk/config'
 
-export const DD_GET_USER_INFO = 'http://183.234.204.230:8085/WorkStat/dingtalk/user/info'
+export const DD_GET_USER_INFO =
+  'http://183.234.204.230:8085/WorkStat/dingtalk/user/info'
 
 const url = '/api'
 
@@ -24,13 +24,13 @@ export const SHOWDATABYPROJECTNUM = `${url}/ECN/FormBuildController/showDataByPr
 // 根据项目号获取项目批次
 export const getBatchFromSAP = `${url}/ECN/FormBuildController/getBatchFromSAP`
 
-export const SEARCHNAME =  `${url}/ECN/FormBuildController/searchName`
+export const SEARCHNAME = `${url}/ECN/FormBuildController/searchName`
 
-export const QUESTIONBUILD =  `${url}/ECN/FormBuildController/questionBuild` 
+export const QUESTIONBUILD = `${url}/ECN/FormBuildController/questionBuild`
 
 export const UPDATEQUESTIONDATA = `${url}/ECN/FormBuildController/updateQuestionData`
 
-export const EFFECTBUILD =  `${url}/ECN/FormBuildController/effectVerificationBuild` 
+export const EFFECTBUILD = `${url}/ECN/FormBuildController/effectVerificationBuild`
 
 export const UPDATEEFFECTDATA = `${url}/ECN/FormBuildController/updateEffectData`
 
@@ -68,7 +68,7 @@ export const showOutsideECRData = `${url}/ECN/FormShowController/showOutsideECRD
 
 export const UPDATEECRDATA = `${url}/ECN/FormBuildController/updateEcrData`
 
-export const EHWBuild = `${url}/ECN/EHWController/questionBuild`   
+export const EHWBuild = `${url}/ECN/EHWController/questionBuild`
 
 export const SHOWEHWDATA = `${url}/ECN/EHWController/showEHWQuestionToDingDing`
 
@@ -112,11 +112,11 @@ export const GETLAST = `${url}/ECN/EHCController/getLastCreate`
 
 export const GETEHCDATA = `${url}/ECN/EHCController/showEHCModifyData`
 // 异常确认
-export const editQuestion = `${url}/FormBuildV2Controller/editQuestionConfirm`
+export const editQuestion = `${url}/ECN/FormBuildV2Controller/editQuestionConfirm`
 // 分析及对策
-export const EDITANALYSIS = `${url}/FormBuildV2Controller/editReasonAnalysis`
+export const editAnalysis = `${url}/ECN/FormBuildV2Controller/editReasonAnalysis`
 // 出图确认
-export const EDITDRAW = `${url}/FormBuildV2Controller/editDrawConfirm`
+export const editDraw = `${url}/ECN/FormBuildV2Controller/editDrawConfirm`
 
 // 获取省份
 export const showProvince = `${url}/ECN/AppController/showProvinceByName`

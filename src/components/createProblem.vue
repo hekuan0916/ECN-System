@@ -4,74 +4,120 @@
     <a-form
       layout="horizontal"
       @submit="handleSubmit"
-      :autoFormCreate="(form)=>{this.form = form}"
+      :autoFormCreate="
+        form => {
+          this.form = form
+        }
+      "
       style="padding: 10px 10px 40px 10px;"
     >
       <a-row>
-        <a-col v-for="(item,index) in addProblemData" :key="index">
+        <a-col v-for="(item, index) in addProblemData" :key="index">
           <a-form-item
             :label="item.label"
             v-show="item.show != false"
             :fieldDecoratorId="item.name"
-            :fieldDecoratorOptions="{rules: [{ required: item.required, message: item.message }]}"
+            :fieldDecoratorOptions="{
+              rules: [{ required: item.required, message: item.message }]
+            }"
           >
-            <a-input :placeholder="item.message" v-if="item.type =='input'" :disabled="disabled"/>
-            <a-input :placeholder="item.message" v-if="item.type =='selectLabel'" disabled/>
-            <span v-if="item.name =='category_label'"
-              style="color:red;">
+            <a-input
+              :placeholder="item.message"
+              v-if="item.type == 'input'"
+              :disabled="disabled"
+            />
+            <a-input
+              :placeholder="item.message"
+              v-if="item.type == 'selectLabel'"
+              disabled
+            />
+            <span v-if="item.name == 'category_label'" style="color:red;">
               注：外购件物料丢失、损坏等补料情况，请在EHW界面登记，在此界面登记的属违规行为，处罚50分绩效/次。
             </span>
             <a-textarea
               autosize
               :placeholder="item.message"
-              v-if="item.type =='textarea'"
+              v-if="item.type == 'textarea'"
               :disabled="disabled"
             />
             <!-- 异常问题描述备注 -->
-            <span
-              v-if="item.name =='theme'"
-              style="color:red;"
-            >例：1364-01-28工位，底部底板零件200000437371，由于安装孔位打偏，导致无法安装，需重新打孔</span>
+            <span v-if="item.name == 'theme'" style="color:red;"
+              >例：1364-01-28工位，底部底板零件200000437371，由于安装孔位打偏，导致无法安装，需重新打孔</span
+            >
             <a-select
               :placeholder="item.message"
               allowClear
-              v-if="item.type =='select'"
-              @change="item.name == 'occurrence_node' ?changeOccurrence_node($event,project_number):
-                                           item.name ==  'synchro_project' ? synchroProject($event) :null"
-              :disabled="item.name == 'improve_plan'?disabled1:disabled"
+              v-if="item.type == 'select'"
+              @change="
+                item.name == 'occurrence_node'
+                  ? changeOccurrence_node($event, project_number)
+                  : item.name == 'synchro_project'
+                  ? synchroProject($event)
+                  : null
+              "
+              :disabled="item.name == 'improve_plan' ? disabled1 : disabled"
             >
-              <a-select-option v-for="option in item.option" :key="option.value">{{option.value}}</a-select-option>
+              <a-select-option
+                v-for="option in item.option"
+                :key="option.value"
+                >{{ option.value }}</a-select-option
+              >
             </a-select>
             <a-select
               :placeholder="item.message"
               allowClear
-              v-if="item.type =='select1'"
+              v-if="item.type == 'select1'"
               :disabled="disabled"
             >
-              <a-select-option v-for="option in item.option" :key="option">{{option}}</a-select-option>
+              <a-select-option v-for="option in item.option" :key="option">{{
+                option
+              }}</a-select-option>
             </a-select>
             <!-- 重大异常备注 -->
-            <span v-if="item.name =='abnormity_grade'" style="color:red">重大异常：出现结构撞机或改善物料成本≥1万元</span>
+            <span v-if="item.name == 'abnormity_grade'" style="color:red"
+              >重大异常：出现结构撞机或改善物料成本≥1万元</span
+            >
+            <!-- 是否需要厂内组装备注 -->
+            <span v-if="item.name == 'is_assembly'" style="color:red;">
+              改善后,零件可以组装成机构类的异常,必须厂内组装后再发往现场
+            </span>
             <a-select
               :placeholder="item.message"
-              v-if="item.type =='comboboxSelect'"
+              v-if="item.type == 'comboboxSelect'"
               :disabled="disabled"
-              :mode="item.name === 'batch' ? 'multiple' :
-                              item.name =='position_code' ? positionCodeMode : null"
+              :mode="
+                item.name === 'batch'
+                  ? 'multiple'
+                  : item.name == 'position_code'
+                  ? positionCodeMode
+                  : null
+              "
               :showSearch="item.name == 'project_number' ? true : false"
               allowClear
-              @search="item.name =='project_number' ? searchNum($event) : ''"
-              @change="item.name == 'project_number'
-                                ? getInput($event) : item.name=='position_code'
-                                ? getSNCodeFromSAP($event) : ''"
-              @blur="positionCodeMode ==='combobox' &&　item.name=='position_code' && getSNCodeFromSAP($event)"
+              @search="item.name == 'project_number' ? searchNum($event) : ''"
+              @change="
+                item.name == 'project_number'
+                  ? getInput($event)
+                  : item.name == 'position_code'
+                  ? getSNCodeFromSAP($event)
+                  : ''
+              "
+              @blur="
+                positionCodeMode === 'combobox' &&
+                  item.name == 'position_code' &&
+                  getSNCodeFromSAP($event)
+              "
             >
-              <a-select-option v-for="option in item.option" :key="option">{{option}}</a-select-option>
+              <a-select-option v-for="option in item.option" :key="option">{{
+                option
+              }}</a-select-option>
             </a-select>
             <a-select
               :placeholder="item.message"
-              v-if="item.type =='showSelect'"
-              :disabled="item.name == 'improve_man' ? improveDisabled : disabled"
+              v-if="item.type == 'showSelect'"
+              :disabled="
+                item.name == 'improve_man' ? improveDisabled : disabled
+              "
               :showSearch="item.name == 'improve_man' ? isCanChange : true"
               style="width: 200px"
               :defaultActiveFirstOption="false"
@@ -82,13 +128,16 @@
             >
               <a-select-option
                 v-for="option in item.option"
-                :key="option.name + '-' + option.user+'-'+option.jobname"
-              >{{option.name}}-{{option.user}}-{{option.jobname}}</a-select-option>
+                :key="option.name + '-' + option.user + '-' + option.jobname"
+                >{{ option.name }}-{{ option.user }}-{{
+                  option.jobname
+                }}</a-select-option
+              >
             </a-select>
             <a-date-picker
               placeholder="请选择时间"
               :format="dateFormat"
-              v-if="item.type =='date'"
+              v-if="item.type == 'date'"
               :disabled="disabled"
             />
 
@@ -96,28 +145,42 @@
             <a-select
               :placeholder="item.message"
               allowClear
-              v-if="item.type =='usersselect'"
+              v-if="item.type == 'usersselect'"
               :disabled="usersSelectdisabled"
             >
-              <a-select-option v-for="option in item.option" :key="option.value">{{option.value}}</a-select-option>
+              <a-select-option
+                v-for="option in item.option"
+                :key="option.value"
+                >{{ option.value }}</a-select-option
+              >
             </a-select>
             <a-date-picker
               placeholder="请选择时间"
-              :disabledDate="item.name == 'improve_plan_upload_time'?disabledDate: null"
-              v-if="item.type =='usersdate'"
+              :disabledDate="
+                item.name == 'improve_plan_upload_time' ? disabledDate : null
+              "
+              v-if="item.type == 'usersdate'"
               :disabled="usersdisabled"
             />
-            <a-input v-if="item.type == 'inputusers'" disabled :placeholder="item.message"/>
+            <a-input
+              v-if="item.type == 'inputusers'"
+              disabled
+              :placeholder="item.message"
+            />
 
             <!-- 只有状态为已接收异常和关闭的时候才可以  而且只有root为userpmo 或 group包含userpmo  -->
             <a-select
               :placeholder="item.message"
               allowClear
-              v-if="item.type =='userpmoSelect'"
+              v-if="item.type == 'userpmoSelect'"
               @select="selectRepeat"
               :disabled="userpmoSelectdisabled"
             >
-              <a-select-option v-for="option in item.option" :key="option.value">{{option.value}}</a-select-option>
+              <a-select-option
+                v-for="option in item.option"
+                :key="option.value"
+                >{{ option.value }}</a-select-option
+              >
             </a-select>
             <a-input
               v-if="item.type == 'userpmoInput'"
@@ -137,12 +200,22 @@
                 v-for="item in provinceData"
                 :value="item.name"
                 :key="item.id"
-              >{{item.name}}</a-select-option>
+                >{{ item.name }}</a-select-option
+              >
             </a-select>
-            <a-select v-if="item.type =='selectCity'" :placeholder="item.message">
-              <a-select-option v-for="city in cityData" :key="city">{{city}}</a-select-option>
+            <a-select
+              v-if="item.type == 'selectCity'"
+              :placeholder="item.message"
+            >
+              <a-select-option v-for="city in cityData" :key="city">{{
+                city
+              }}</a-select-option>
             </a-select>
-            <a-input-number placeholder="请输入" v-if="item.type =='numInput'" :min="1"/>
+            <a-input-number
+              placeholder="请输入"
+              v-if="item.type == 'numInput'"
+              :min="1"
+            />
           </a-form-item>
         </a-col>
       </a-row>
@@ -150,14 +223,17 @@
         <a-button
           class="flexbtn copy"
           v-if="question_id"
-          @click="copy('question',$event)"
+          @click="copy('question', $event)"
           :loading="btnloading"
-        >复制</a-button>
+          >复制</a-button
+        >
         <a-button
           type="primary"
           htmlType="submit"
           :class="[question_id ? 'flexbtn' : 'sure']"
-          :loading="btnloading">确定</a-button>
+          :loading="btnloading"
+          >确定</a-button
+        >
       </div>
     </a-form>
   </div>
@@ -183,7 +259,7 @@ import {
 import moment from 'moment'
 import qs from 'qs'
 export default {
-  data() {
+  data () {
     return {
       labelCol: { span: 6 },
       wrapperCol: { span: 16, offset: 1 },
@@ -228,7 +304,7 @@ export default {
   },
   methods: {
     //sn码点击事件
-    getSNCodeFromSAP(value) {
+    getSNCodeFromSAP (value) {
       if (value) {
         this.getImproveMan(this.project_number, value)
         this.axios
@@ -248,7 +324,7 @@ export default {
       }
     },
     //选择发生节点
-    changeOccurrence_node(value, proNum) {
+    changeOccurrence_node (value, proNum) {
       let improve_man = this.form.getFieldValue('improve_man')
       this.getCityData(this.remark, value)
       this.isCanChange = !value
@@ -277,14 +353,14 @@ export default {
       })
     },
     //选择时间限制
-    disabledDate(current) {
+    disabledDate (current) {
       // Can not select days before today and today
       return (
         current < moment().startOf('day') || current > moment().add(0, 'day')
       )
     },
     //改善负责人搜索事件
-    handleSearch(value, type) {
+    handleSearch (value, type) {
       this.axios
         .get(SEARCHNAME, {
           params: {
@@ -304,7 +380,7 @@ export default {
         })
     },
     //项目编号模糊搜索
-    searchNum(item) {
+    searchNum (item) {
       const len = item.length
       if (len < 3) {
         return
@@ -328,7 +404,7 @@ export default {
         })
     },
     //项目编号输入框事件
-    getInput(inputCon) {
+    getInput (inputCon) {
       const reg = /^[0-9a-zA-Z]+$/
       let position_code = this.form.getFieldValue('position_code')
       if (!reg.test(inputCon)) {
@@ -407,7 +483,7 @@ export default {
       }
     },
     // 根据项目号获取批次
-    getBatchFromSAP(num) {
+    getBatchFromSAP (num) {
       let batchList = []
       this.axios
         .get(getBatchFromSAP, {
@@ -428,7 +504,7 @@ export default {
         })
     },
     // 获取所有的省份
-    getAllProvince() {
+    getAllProvince () {
       this.axios
         .get(showProvince, {
           params: {
@@ -442,7 +518,7 @@ export default {
         })
     },
     // 搜索模糊匹配获取省份
-    filterOption(input, option) {
+    filterOption (input, option) {
       return (
         option.componentOptions.children[0].text
           .toLowerCase()
@@ -450,7 +526,7 @@ export default {
       )
     },
     // 根据选择的省份获取城市
-    handleProvinceChange(value, option) {
+    handleProvinceChange (value, option) {
       this.axios
         .get(showCity, {
           params: {
@@ -465,7 +541,7 @@ export default {
         })
     },
     // 获取城市地址
-    getCityData(tag, node) {
+    getCityData (tag, node) {
       tag = 're-city'
       this.addProblemData.map(val => {
         if (
@@ -490,7 +566,7 @@ export default {
       })
     },
     // 改善负责人选项
-    getImproveMan(project_number, station_number) {
+    getImproveMan (project_number, station_number) {
       const reg = new RegExp(project_number + '-[0-9]{2}-[0-9]{2}')
       if (project_number && station_number) {
         if (!reg.test(station_number)) {
@@ -520,7 +596,7 @@ export default {
       }
     },
     //选择不是/重复异常事件
-    selectRepeat(val) {
+    selectRepeat (val) {
       this.addProblemData.find(item => {
         if (val == '重复异常' && item.name == 'same_project_exception_number') {
           item.required = true
@@ -533,7 +609,7 @@ export default {
       })
     },
     //复制
-    copy(type, e) {
+    copy (type, e) {
       let _this = this
       e.preventDefault()
       _this.form.validateFields((err, fieldsValue) => {
@@ -588,7 +664,7 @@ export default {
               _this.findDQEPerson(res.data.obj)
             } else {
               _this.$message.error(res.data.message)
-              setTimeout(function() {
+              setTimeout(function () {
                 window.location.reload()
               }, 2000)
             }
@@ -597,7 +673,7 @@ export default {
       })
     },
     //确定提交
-    handleSubmit(e) {
+    handleSubmit (e) {
       let _this = this
       e.preventDefault()
       _this.form.validateFields((err, fieldsValue) => {
@@ -664,7 +740,7 @@ export default {
         }
       })
     },
-    findDQEPerson(obj) {
+    findDQEPerson (obj) {
       this.axios
         .get(findDQEPerson, {
           params: {
@@ -678,7 +754,7 @@ export default {
         })
     },
     // 是否同步项目号
-    synchroProject(value) {
+    synchroProject (value) {
       this.addProblemData.find(val => {
         if (val.name == 'synchro_number') {
           if (value == '是') {
@@ -698,7 +774,7 @@ export default {
       })
     }
   },
-  created() {
+  created () {
     let _this = this
     _this.isCounts = _this.$route.query.isCounts
     const jobnumber = window.sessionStorage.getItem('LYRIC_JOBNUMBER')
@@ -737,7 +813,7 @@ export default {
       })
     }
   },
-  mounted() {
+  mounted () {
     const root = window.sessionStorage.getItem('ROOT')
     const group = window.sessionStorage.getItem('GROUP')
     const jobnumber = window.sessionStorage.getItem('LYRIC_JOBNUMBER')
@@ -1009,4 +1085,3 @@ export default {
   }
 }
 </style>
-
