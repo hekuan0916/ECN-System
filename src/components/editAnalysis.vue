@@ -1,5 +1,5 @@
 <template>
-  <div class="editQuestion">
+  <div class="editAnalysis">
     <a-form
       :form="form"
       @submit="handleSubmit"
@@ -20,21 +20,48 @@
               rules: [{ required: item.required, message: item.message }]
             }"
           >
-            <a-input
+            <a-textarea
+              autosize
+              style="height: auto"
               :placeholder="item.message"
               v-if="item.type == 'textarea'"
-              :disabled="disabled"
-            />
-            <a-input
-              :placeholder="item.message"
-              v-if="item.type == 'selectLabel'"
               disabled
             />
-            <span v-if="item.name == 'category_label'"> </span>
+            <!-- <span v-if="item.name == 'category_label'"> </span> -->
             <a-select
               :placeholder="item.message"
               allowClear
               v-if="item.type == 'select'"
+              :disabled="disabled"
+            >
+              <a-select-option v-for="option in item.option" :key="option">{{
+                option
+              }}</a-select-option>
+            </a-select>
+            <a-select
+              :placeholder="item.message"
+              allowClear
+              v-if="item.type == 'personSelect'"
+              :disabled="disabled"
+            >
+              <a-select-option v-for="option in item.option" :key="option">{{
+                option
+              }}</a-select-option>
+            </a-select>
+            <a-select
+              :placeholder="item.message"
+              allowClear
+              v-if="item.type == 'selectNumber'"
+              :disabled="disabled"
+            >
+              <a-select-option v-for="option in item.option" :key="option">{{
+                option
+              }}</a-select-option>
+            </a-select>
+            <a-select
+              :placeholder="item.message"
+              allowClear
+              v-if="item.type == 'systemValue'"
               :disabled="disabled"
             >
               <a-select-option v-for="option in item.option" :key="option">{{
@@ -47,6 +74,7 @@
               v-if="item.type == 'date'"
               :disabled="disabled"
             />
+            <span v-if="item.name == 'analyzeTime'"> </span>
           </a-form-item>
         </a-col>
       </a-row>

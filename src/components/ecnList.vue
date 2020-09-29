@@ -987,6 +987,11 @@ export default {
                 path: '/editDraw',
                 query: { question_id: item.id }
               })
+            } else if (result.buttonIndex == 4) {
+              _this.$router.push({
+                path: '/createEffect',
+                query: { question_id: item.id }
+              })
             }
           },
           onFail: function (err) {}

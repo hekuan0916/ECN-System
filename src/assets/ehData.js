@@ -191,7 +191,7 @@ const ehConfirm = [
     name: 'confirmPerson'
   },
   {
-    type: 'systemValue1',
+    type: 'date',
     label: '确认日期',
     required: false,
     message: '确认日期',
@@ -313,7 +313,7 @@ const ehAnalyze = [
     name: 'analyze'
   },
   {
-    type: 'systemValue',
+    type: 'date',
     label: '分析日期',
     required: false,
     message: '分析日期',
@@ -328,7 +328,7 @@ const ehFigureConfirm = [
     required: true,
     message: '请选择改善确认',
     option: [{ value: 'NG' }, { value: 'OK' }],
-    name: 'improveConfirm'
+    name: 'improve_confirm'
   },
   {
     type: 'systemValue',
@@ -338,7 +338,7 @@ const ehFigureConfirm = [
     name: 'actual_ecr_principle'
   },
   {
-    type: 'systemValue',
+    type: 'date',
     label: '确认时间',
     required: false,
     message: '确认时间',
@@ -392,7 +392,7 @@ const ehEffect = [
     name: 'actual_close_man'
   },
   {
-    type: 'systemValue',
+    type: 'date',
     label: '关闭时间',
     name: 'creator_time',
     message: '请选择关闭时间'

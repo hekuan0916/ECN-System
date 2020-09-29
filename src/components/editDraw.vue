@@ -1,15 +1,71 @@
 <template>
-  <div>
-      出图确认
+  <div class="editDraw">
+    <a-form
+      :form="form"
+      @submit="handleSubmit"
+      :autoFormCreate="
+        form => {
+          this.form = form
+        }
+      "
+      style="padding: 10px 10px 40px 10px;"
+    >
+      <a-row>
+        <a-col v-for="(item, index) in ehFigureConfirm" :key="index">
+          <a-form-item
+            :label="item.label"
+            v-show="item.show != false"
+            :fieldDecoratorId="item.name"
+            :fieldDecoratorOptions="{
+              rules: [{ required: item.required, message: item.message }]
+            }"
+          >
+            <a-input
+              :placeholder="item.message"
+              v-if="item.type == 'systemValue'"
+              :disabled="disabled"
+            />
+            <span v-if="item.name == 'improve_confirm'"> </span>
+            <a-select
+              :placeholder="item.message"
+              allowClear
+              v-if="item.type == 'select'"
+              :disabled="disabled"
+            >
+              <a-select-option v-for="option in item.option" :key="option">{{
+                option
+              }}</a-select-option>
+            </a-select>
+            <a-date-picker
+              placeholder="请选择时间"
+              :format="dateFormat"
+              v-if="item.type == 'date'"
+              :disabled="disabled"
+            />
+          </a-form-item>
+        </a-col>
+      </a-row>
+    </a-form>
   </div>
 </template>
 
 <script>
+// import { editQuestion } from '@/assets/js/url'
+import { ehFigureConfirm } from '@/assets/ehData.js'
 export default {
-
+  data () {
+    return {
+      dateFormat: 'YYYY-MM-DD',
+      disabled: false,
+      ehFigureConfirm,
+      form: this.$form.createForm(this, { name: 'coordinated' })
+    }
+  },
+  methods: {
+    handleSubmit () {}
+  }
 }
 </script>
-
-<style>
-
+<style lang="less" scoped>
+@import url('../assets/style/color');
 </style>
