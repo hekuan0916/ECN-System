@@ -971,7 +971,7 @@ export default {
                   isCounts: isCounts
                 }
               })
-              //
+              console.log('CO', isCounts)
             } else if (result.buttonIndex == 1) {
               _this.$router.push({
                 path: '/editQuestion',

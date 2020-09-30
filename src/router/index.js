@@ -55,7 +55,7 @@ const router = new Router({
     },
     {
       path: '/createProblem',
-      name: '问题创建（EH）',
+      name: '创建异常（EH）',
       meta: {
         requiresAuth: true
       },
@@ -75,7 +75,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-      component: createEffect 
+      component: createEffect
     },
     {
       path: '/upload',
@@ -96,27 +96,27 @@ const router = new Router({
     {
       path: '/editQuestion',
       name: 'eh异常确认',
-      component:()=>import('@/components/editQuestion'),
+      component: () => import('@/components/editQuestion'),
       meta: {
-        title:'EH异常确认',
+        title: 'EH异常确认',
         requiresAuth: true
       }
     },
     {
       path: '/editAnalysis',
       name: 'EH分析及对策',
-      component:()=>import('@/components/editAnalysis'),
+      component: () => import('@/components/editAnalysis'),
       meta: {
-        title:'eh分析及对策',
+        title: 'eh分析及对策',
         requiresAuth: true
       }
     },
     {
       path: '/editDraw',
       name: 'EH出图确认',
-      component:()=>import('@/components/editDraw'),
+      component: () => import('@/components/editDraw'),
       meta: {
-        title:'出图确认',
+        title: '出图确认',
         requiresAuth: true
       }
     },
@@ -126,7 +126,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-      component: ehwDetail 
+      component: ehwDetail
     },
     {
       path: '/ehwApproval',
@@ -134,7 +134,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
-      component: ehwApproval 
+      component: ehwApproval
     },
     {
       path: '/ehcProblem',
@@ -181,8 +181,8 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
   dd.biz.navigation.setTitle({
-    title: to.name, //控制标题文本，空字符串表示显示默认文本
-  });
+    title: to.name //控制标题文本，空字符串表示显示默认文本
+  })
 })
 
 export default router

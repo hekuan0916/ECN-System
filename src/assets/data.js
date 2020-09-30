@@ -8,14 +8,14 @@ const addProblemData = [
     option: [],
     name: 'category_label'
   },
-  {
-    type: 'selectLabel',
-    label: 'EH或EHQ',
-    required: true,
-    option: [{ value: 'EH' }, { value: 'EHQ' }],
-    message: 'EH或EHQ',
-    name: 'eh_or_ehq'
-  },
+  // {
+  //   type: 'selectLabel',
+  //   label: 'EH或EHQ',
+  //   required: true,
+  //   option: [{ value: 'EH' }, { value: 'EHQ' }],
+  //   message: 'EH或EHQ',
+  //   name: 'eh_or_ehq'
+  // },
   {
     type: 'select',
     label: '异常提出人',
@@ -44,20 +44,20 @@ const addProblemData = [
     name: 'project_number'
   },
   {
-    type: 'comboboxSelect',
-    label: '工位号',
-    option: [],
-    required: true,
-    message: '工位号-工位名称',
-    name: 'position_code'
-  },
-  {
     type: 'select1',
     label: '工位SN码',
     option: ['无'],
     required: false,
     message: '例:1616-01-01-0001',
     name: 'sn_code'
+  },
+  {
+    type: 'comboboxSelect',
+    label: '工位号',
+    option: [],
+    required: true,
+    message: '工位号-工位名称',
+    name: 'position_code'
   },
   {
     type: 'comboboxSelect',
@@ -210,23 +210,23 @@ const addProblemData = [
     name: 'improve_plan_result_time',
     show: false
   },
-  {
-    type: 'userpmoSelect',
-    label: '不是/重复异常',
-    required: false,
-    message: '请选择不是/重复异常',
-    name: 'no_or_repeat',
-    option: [{ value: '不是异常' }, { value: '重复异常' }],
-    show: false
-  },
-  {
-    type: 'userpmoInput',
-    label: '重复异常编号',
-    required: false,
-    message: '请填写重复异常编号',
-    name: 'same_project_exception_number',
-    show: false
-  },
+  // {
+  //   type: 'userpmoSelect',
+  //   label: '不是/重复异常',
+  //   required: false,
+  //   message: '请选择不是/重复异常',
+  //   name: 'no_or_repeat',
+  //   option: [{ value: '不是异常' }, { value: '重复异常' }],
+  //   show: false
+  // },
+  // {
+  //   type: 'userpmoInput',
+  //   label: '重复异常编号',
+  //   required: false,
+  //   message: '请填写重复异常编号',
+  //   name: 'same_project_exception_number',
+  //   show: false
+  // },
   //   {
   //     type: 'selectProvince',
   //     label: '所在省份',
@@ -419,7 +419,7 @@ const ehEcrModalData = [
 const effectValidateData = [
   {
     type: 'select',
-    label: '改善结果',
+    label: '改善效果',
     required: true,
     key: 'IMPROVE_RESULT',
     option: [],

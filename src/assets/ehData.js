@@ -125,14 +125,14 @@ const ehProblem = [
     name: 'bad_category'
   },
   {
-    type: 'date',
+    type: 'systemValue',
     label: '要求出图时间',
     required: true,
     message: '请选择要求出图时间',
     name: 'drawing_time_required_time'
   },
   {
-    type: 'date',
+    type: 'systemValue',
     label: '零件要求领用时间',
     required: true,
     message: '请选择零件要求领用时间',
@@ -191,7 +191,7 @@ const ehConfirm = [
     name: 'confirmPerson'
   },
   {
-    type: 'date',
+    type: 'systemValue',
     label: '确认日期',
     required: false,
     message: '确认日期',
@@ -313,7 +313,7 @@ const ehAnalyze = [
     name: 'analyze'
   },
   {
-    type: 'date',
+    type: 'systemValue',
     label: '分析日期',
     required: false,
     message: '分析日期',
@@ -338,7 +338,7 @@ const ehFigureConfirm = [
     name: 'actual_ecr_principle'
   },
   {
-    type: 'date',
+    type: 'systemValue',
     label: '确认时间',
     required: false,
     message: '确认时间',
@@ -372,7 +372,7 @@ const ehEffect = [
     name: 'temporary_confirmer'
   },
   {
-    type: 'date',
+    type: 'systemValue',
     label: '确认时间',
     required: true,
     name: 'improvement_results_completion_time',
@@ -392,7 +392,7 @@ const ehEffect = [
     name: 'actual_close_man'
   },
   {
-    type: 'date',
+    type: 'offDate',
     label: '关闭时间',
     name: 'creator_time',
     message: '请选择关闭时间'

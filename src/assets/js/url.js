@@ -112,14 +112,20 @@ export const GETLAST = `${url}/ECN/EHCController/getLastCreate`
 
 export const GETEHCDATA = `${url}/ECN/EHCController/showEHCModifyData`
 // 异常确认
-export const editQuestion = `${url}/ECN/FormBuildV2Controller/editQuestionConfirm`
+export const EDITQUESTIONCONFIRM = `${url}/ECN/FormBuildV2Controller/editQuestionConfirm`
 // 分析及对策
-export const editAnalysis = `${url}/ECN/FormBuildV2Controller/editReasonAnalysis`
+export const EDITANALYSIS = `${url}/ECN/FormBuildV2Controller/editReasonAnalysis`
 // 出图确认
-export const editDraw = `${url}/ECN/FormBuildV2Controller/editDrawConfirm`
+export const EDITDRAW = `${url}/ECN/FormBuildV2Controller/editDrawConfirm`
 
 // 获取省份
-export const showProvince = `${url}/ECN/AppController/showProvinceByName`
+export const SHOWPROVINCE = `${url}/ECN/AppController/showProvinceByName`
 
 // 获取城市
-export const showCity = `${url}/ECN/AppController/showCity`
+export const SHOWCITY = `${url}/ECN/AppController/showCity`
+
+// 获取详情
+export const SHOWFORMDATA = `${url}/ECN/FormShowV2Controller/showFormData`
+
+// 创建异常确认
+export const EDITQUESTION = `${url}/ECN/FormBuildV2Controller/editQuestion`

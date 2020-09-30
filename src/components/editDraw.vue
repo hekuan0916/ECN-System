@@ -32,9 +32,11 @@
               v-if="item.type == 'select'"
               :disabled="disabled"
             >
-              <a-select-option v-for="option in item.option" :key="option">{{
-                option
-              }}</a-select-option>
+              <a-select-option
+                v-for="option in item.option"
+                :key="option.value"
+                >{{ option.value }}</a-select-option
+              >
             </a-select>
             <a-date-picker
               placeholder="请选择时间"
@@ -45,12 +47,19 @@
           </a-form-item>
         </a-col>
       </a-row>
+      <a-button
+        type="primary"
+        htmlType="submit"
+        class="proBotton"
+        :loading="btnloading"
+        >确定</a-button
+      >
     </a-form>
   </div>
 </template>
 
 <script>
-// import { editQuestion } from '@/assets/js/url'
+import { SHOWFORMDATA } from '@/assets/js/url'
 import { ehFigureConfirm } from '@/assets/ehData.js'
 export default {
   data () {
@@ -58,14 +67,43 @@ export default {
       dateFormat: 'YYYY-MM-DD',
       disabled: false,
       ehFigureConfirm,
+      id: this.$route.query.question_id,
       form: this.$form.createForm(this, { name: 'coordinated' })
     }
   },
   methods: {
-    handleSubmit () {}
+    handleSubmit () {},
+    getDraw () {
+      this.axios
+        .get(SHOWFORMDATA, {
+          params: {
+            id: this.id,
+            node: '出图确认'
+          }
+        })
+        .then(res => {
+          this.form.setFieldsValue(res.data.obj)
+          console.log('获取', res)
+        })
+    }
+  },
+  created () {
+    this.getDraw()
   }
 }
 </script>
 <style lang="less" scoped>
 @import url('../assets/style/color');
+.proBotton {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-top: 1px solid #e6e6e6;
+  background-color: #1890ff;
+}
 </style>

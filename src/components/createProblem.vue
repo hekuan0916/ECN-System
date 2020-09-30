@@ -252,9 +252,10 @@ import {
   SERACHPRONUM,
   getSNCodeFromSAP,
   getImproveMan,
-  showProvince,
-  showCity,
-  getBatchFromSAP
+  SHOWPROVINCE,
+  SHOWCITY,
+  getBatchFromSAP,
+  SHOWFORMDATA
 } from '@/assets/js/url'
 import moment from 'moment'
 import qs from 'qs'
