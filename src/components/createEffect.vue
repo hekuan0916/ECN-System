@@ -91,7 +91,8 @@ import {
   EFFECTBUILD,
   SELECTBYKEY,
   UPDATEEFFECTDATA,
-  SEARCHNAME
+  SEARCHNAME,
+  SHOWFORMDATA
 } from '@/assets/js/url'
 import problem from '@/components/createProblem'
 import qs from 'qs'
@@ -99,7 +100,7 @@ export default {
   data () {
     return {
       effectValidateData,
-      question_id: '',
+      id: this.$route.query.question_id,
       jobnumber: '',
       name: '',
       choice: '',
@@ -109,13 +110,15 @@ export default {
   },
   components: { problem },
   created () {
+    //获取详情
+    console.log(this.id)
+    this.getQuestion()
     //获取行id
-    this.question_id = this.$route.query.id
     this.axios
       .post(
         CHOICEURL,
         qs.stringify({
-          id: this.question_id
+          id: this.id
         })
       )
       .then(res => {
@@ -146,6 +149,20 @@ export default {
     this.counts()
   },
   methods: {
+    //获取详情
+    getQuestion () {
+      this.axios
+        .get(SHOWFORMDATA, {
+          params: {
+            id: this.id,
+            node: '效果验证'
+          }
+        })
+        .then(res => {
+          console.log(res.data.obj.effectData)
+          // this.form.setFieldsValue()
+        })
+    },
     //确认人搜索
     searchName (value, type) {
       this.axios
@@ -193,7 +210,7 @@ export default {
               formData.append(key, values[key])
             }
           }
-          formData.append('question_id', _this.question_id)
+          formData.append('question_id', _this.id)
           formData.append('label', 'outside')
           formData.append('outside_number', _this.jobnumber)
           formData.append('outside_name', _this.name)

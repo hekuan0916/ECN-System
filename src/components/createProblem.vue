@@ -9,7 +9,7 @@
           this.form = form
         }
       "
-      style="padding: 10px 10px 40px 10px;"
+      style="padding: 10px 10px 40px 10px;" 才
     >
       <a-row>
         <a-col v-for="(item, index) in addProblemData" :key="index">
@@ -247,6 +247,7 @@ import {
   SEARCHNAME,
   QUESTIONBUILD,
   UPDATEQUESTIONDATA,
+  EDITQUESTION,
   SHOWQUESTIONDATA,
   findDQEPerson,
   SERACHPRONUM,
@@ -722,9 +723,8 @@ export default {
             )
             _this.url = UPDATEQUESTIONDATA
           } else {
-            _this.url = QUESTIONBUILD
+            _this.url = EDITQUESTIONCONFIRM
           }
-
           _this.axios.post(_this.url, formData).then(res => {
             if (res.data.success == true) {
               _this.$message.success(res.data.message)

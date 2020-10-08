@@ -306,14 +306,14 @@ const ehAnalyze = [
     name: 'synchro_number'
   },
   {
-    type: 'systemValue',
+    type: 'textarea',
     label: '分析人',
     required: false,
     message: '分析人',
     name: 'analyze'
   },
   {
-    type: 'systemValue',
+    type: 'date',
     label: '分析日期',
     required: false,
     message: '分析日期',
@@ -389,12 +389,12 @@ const ehEffect = [
     type: 'systemValue',
     label: '关闭人',
     message: '请选择关闭人',
-    name: 'actual_close_man'
+    name: 'close_person'
   },
   {
     type: 'offDate',
     label: '关闭时间',
-    name: 'creator_time',
+    name: 'close_time',
     message: '请选择关闭时间'
   }
 ]

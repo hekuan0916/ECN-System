@@ -27,7 +27,7 @@
               v-if="item.type == 'textarea'"
               disabled
             />
-            <!-- <span v-if="item.name == 'category_label'"> </span> -->
+            <span v-if="item.name == 'category_label'"> </span>
             <a-select
               :placeholder="item.message"
               allowClear
@@ -106,7 +106,20 @@ export default {
     }
   },
   methods: {
-    handleSubmit () {},
+    handleSubmit (e) {
+      let _this = this
+      e.preventDefault()
+      _this.form.validateFields((err, fieldsValue) => {
+        if (!err) {
+          if (fieldsValue['select'] == '') {
+            this.$message.info('请选择异常明细')
+            return
+          }
+          this.btnloading = true
+          const formData = new FormData()
+        }
+      })
+    },
     getAnalysis () {
       this.axios
         .get(SHOWFORMDATA, {

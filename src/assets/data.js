@@ -428,14 +428,6 @@ const effectValidateData = [
   },
   {
     type: 'numInput',
-    label: '批量修改数量',
-    required: true,
-    message: '请输入批量修改数量',
-    name: 'change_num_effect',
-    show: false
-  },
-  {
-    type: 'numInput',
     label: '已改善机台数量',
     required: true,
     message: '请输入已改善机台数量',

@@ -92,62 +92,12 @@ export default {
       e.preventDefault()
       _this.form.validateFields((err, fieldsValue) => {
         if (!err) {
-          if (fieldsValue['theme'].length < 30) {
-            this.$message.info('请详细填写异常问题描述！')
+          if (fieldsValue['select'] == '') {
+            this.$message.info('请选择异常明细')
             return
           }
           this.btnloading = true
           const formData = new FormData()
-          const values = {
-            ...fieldsValue,
-            drawing_time_required_time: fieldsValue[
-              'drawing_time_required_time'
-            ]
-              ? fieldsValue['drawing_time_required_time'].format('YYYY-MM-DD')
-              : null,
-            part_requirement_time: fieldsValue['part_requirement_time'].format(
-              'YYYY-MM-DD'
-            ),
-            question_status: _this.question_status,
-            label: 'outside',
-            outside_number: _this.jobnumber,
-            outside_name: _this.username,
-            fold_id: 1
-          }
-
-          for (var key in values) {
-            if (values[key] != undefined) {
-              if (
-                key == 'improve_plan_upload_time' ||
-                key == 'improve_plan_time'
-              ) {
-                values[key] = values[key].format('YYYY-MM-DD')
-              }
-              formData.append(key, values[key])
-            }
-          }
-
-          if (_this.question_id) {
-            formData.append('id', _this.question_id)
-            formData.append(
-              'project_exception_number',
-              _this.project_exception_number
-            )
-            _this.url = EDITQUESTIONCONFIRM
-          }
-          _this.axios.post(_this.url, formData).then(res => {
-            if (res.data.success == true) {
-              _this.$message.success(res.data.message)
-              _this.btnloading = false
-              _this.$router.push('/ecnList')
-              if (!_this.question_id) {
-                _this.findDQEPerson(res.data.obj)
-              }
-            } else {
-              _this.btnloading = false
-              _this.$message.error(res.data.message)
-            }
-          })
         }
       })
     },

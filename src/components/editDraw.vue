@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { SHOWFORMDATA } from '@/assets/js/url'
+import { SHOWFORMDATA, EDITDRAW } from '@/assets/js/url'
 import { ehFigureConfirm } from '@/assets/ehData.js'
 export default {
   data () {
@@ -67,6 +67,7 @@ export default {
       dateFormat: 'YYYY-MM-DD',
       disabled: false,
       ehFigureConfirm,
+      btnloading: false,
       id: this.$route.query.question_id,
       form: this.$form.createForm(this, { name: 'coordinated' })
     }
@@ -82,12 +83,13 @@ export default {
           }
         })
         .then(res => {
-          this.form.setFieldsValue(res.data.obj)
+          // this.form.setFieldsValue(res.data.obj)
           console.log('获取', res)
         })
     }
   },
   created () {
+    console.log(this.id)
     this.getDraw()
   }
 }
